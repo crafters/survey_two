@@ -5,11 +5,12 @@ defmodule SurveyTwo.Surveys.Question do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "questions" do
+    field :title, :string
     field :text, :string
     field :type, :string
     field :required, :boolean, default: false
     field :options, {:array, :string}
-    field :position, :integer, default: 0
+    field :position, :decimal
     field :survey_id, :binary_id
 
     timestamps(type: :utc_datetime)
@@ -18,7 +19,7 @@ defmodule SurveyTwo.Surveys.Question do
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [:text, :type, :required, :options, :position, :survey_id])
-    |> validate_required([:text, :type, :required, :options, :position, :survey_id])
+    |> cast(attrs, [:title, :text, :type, :required, :options, :position, :survey_id])
+    |> validate_required([:title, :text, :type, :required, :position, :survey_id])
   end
 end

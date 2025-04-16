@@ -119,6 +119,55 @@ defmodule SurveyTwo.Surveys do
   end
 
   @doc """
+  Moves a question up or down in the order within its survey.
+
+  ## Parameters
+  - survey_id: The ID of the survey containing the questions
+  - question_id: The ID of the question to move
+  - direction: Either "up" (move earlier in order) or "down" (move later in order)
+
+  ## Returns
+  - {:ok, {moved_question, swapped_with_question}} on success
+  - {:error, reason} on failure (e.g., already at the top/bottom)
+  """
+  def move_question(survey_id, question_id, direction) when direction in ["up", "down"] do
+    questions = list_questions(survey_id)
+    target_question = Enum.find(questions, fn q -> q.id == question_id end)
+
+    case find_swap_question(questions, target_question, direction) do
+      nil ->
+        {:ok, {target_question, nil}}
+
+      swap_question ->
+        Repo.transaction(fn ->
+          target_pos = target_question.position
+          swap_pos = swap_question.position
+
+          target_question
+          |> Ecto.Changeset.change(position: swap_pos)
+          |> Repo.update!()
+
+          swap_question
+          |> Ecto.Changeset.change(position: target_pos)
+          |> Repo.update!()
+
+          {target_question, swap_question}
+        end)
+    end
+  end
+
+  defp find_swap_question(questions, target_question, direction) do
+    target_index = Enum.find_index(questions, fn q -> q.id == target_question.id end)
+
+    case {direction, target_index} do
+      {"up", 0} -> nil
+      {"down", idx} when idx == length(questions) - 1 -> nil
+      {"up", idx} -> Enum.at(questions, idx - 1)
+      {"down", idx} -> Enum.at(questions, idx + 1)
+    end
+  end
+
+  @doc """
   Gets a single question.
 
   Raises `Ecto.NoResultsError` if the Question does not exist.
@@ -187,6 +236,23 @@ defmodule SurveyTwo.Surveys do
   end
 
   @doc """
+  Calculates the next position value for a new question in a survey.
+  Returns a decimal value that is 1.0 greater than the highest current position.
+  If no questions exist, returns 1.0.
+  """
+  def next_question_position(survey_id) do
+    query =
+      from q in Question,
+        where: q.survey_id == ^survey_id,
+        select: max(q.position)
+
+    case Repo.one(query) do
+      nil -> Decimal.new(1)
+      max_position -> Decimal.add(max_position, Decimal.new(1))
+    end
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking question changes.
 
   ## Examples
@@ -195,7 +261,12 @@ defmodule SurveyTwo.Surveys do
       %Ecto.Changeset{data: %Question{}}
 
   """
-  def change_question(%Question{} = question, attrs \\ %{}) do
+  def change_question(survey_id, %Question{} = question, attrs \\ %{}) do
+    attrs =
+      attrs
+      |> Map.put(:position, question.position || next_question_position(survey_id))
+      |> Map.put(:survey_id, survey_id)
+
     Question.changeset(question, attrs)
   end
 

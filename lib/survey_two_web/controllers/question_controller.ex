@@ -12,7 +12,7 @@ defmodule SurveyTwoWeb.QuestionController do
 
   def new(conn, %{"survey_id" => survey_id}) do
     survey = Surveys.get_survey!(survey_id)
-    changeset = Surveys.change_question(%Question{})
+    changeset = Surveys.change_question(survey_id, %Question{})
     render(conn, :new, survey: survey, changeset: changeset)
   end
 
@@ -30,11 +30,9 @@ defmodule SurveyTwoWeb.QuestionController do
     end
   end
 
-  def reorder(conn, %{"id" => id, "survey_id" => survey_id}) do
-    survey = Surveys.get_survey!(survey_id)
-    question = Surveys.get_question!(id)
-    changeset = Surveys.change_question(question)
-    render(conn, :edit, survey: survey, question: question, changeset: changeset)
+  def move(conn, %{"question_id" => id, "survey_id" => survey_id, "direction" => direction}) do
+    {:ok, _} = Surveys.move_question(survey_id, id, direction)
+    redirect(conn, to: ~p"/surveys/#{survey_id}/questions")
   end
 
   def show(conn, %{"id" => id, "survey_id" => survey_id}) do
@@ -46,7 +44,7 @@ defmodule SurveyTwoWeb.QuestionController do
   def edit(conn, %{"id" => id, "survey_id" => survey_id}) do
     survey = Surveys.get_survey!(survey_id)
     question = Surveys.get_question!(id)
-    changeset = Surveys.change_question(question)
+    changeset = Surveys.change_question(survey_id, question)
     render(conn, :edit, survey: survey, question: question, changeset: changeset)
   end
 

@@ -1,7 +1,7 @@
 <Layouts.app flash={@flash}>
   <.header>
     Survey {@survey.title}
-    <:subtitle>This is a survey record from your database.</:subtitle>
+    <:subtitle>Id: {@survey.id}</:subtitle>
     <:actions>
       <.button navigate={~p"/surveys"}>
         <.icon name="hero-arrow-left" />

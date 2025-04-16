@@ -1,5 +1,6 @@
 <.form :let={f} for={@changeset} action={@action}>
-  <.input field={f[:text]} type="text" label="Text" />
+  <.input field={f[:title]} type="text" label="Title" />
+  <.input field={f[:text]} type="textarea" label="Text" />
   <.input field={f[:required]} type="checkbox" label="Required" />
    <.input
     field={f[:type]}
@@ -13,11 +14,13 @@
     ]}
   />
  
+  <.input field={f[:position]} type="number" readonly label="Position" />
+
  <div class="mt-4 options-container" data-show-for="multiple_choice,checkbox,dropdown">
     <label class="block text-sm font-medium text-gray-700 mb-2">Options</label>
     <div id="options-wrapper" class="space-y-2">
       <%= 
-        options = if @changeset.data.options != [] do @changeset.data.options else [""] end
+        options = if @changeset.data.options != [] && @changeset.data.options != nil do @changeset.data.options else [] end
         for {option, idx} <- Enum.with_index(options) do 
       %>
         <div class="flex items-center">
@@ -35,7 +38,7 @@
     <button type="button" id="add-option" class="mt-2 text-sm text-blue-500">+ Add Option</button>
   </div>
   
-  <.input field={f[:position]} type="number" label="Position" />
+  
   <footer>
     <.button variant="primary">Save Question</.button>
     <.button :if={@return_to} href={@return_to}>Cancel</.button>

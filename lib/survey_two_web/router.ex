@@ -20,7 +20,9 @@ defmodule SurveyTwoWeb.Router do
     get "/", PageController, :home
 
     resources "/surveys", SurveyController do
-      resources "/questions", QuestionController
+      resources "/questions", QuestionController do
+        post "/move", QuestionController, :move
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 <Layouts.app flash={@flash}>
   <.header>
-    Question {@question.id}
-    <:subtitle>This is a question record from your database.</:subtitle>
+    {@question.title}
+    <:subtitle>Id: {@question.id}</:subtitle>
     <:actions>
       <.button navigate={~p"/surveys/#{@survey}/questions"}>
         <.icon name="hero-arrow-left" />
@@ -17,7 +17,7 @@
     <:item title="Type">{@question.type}</:item>
     <:item title="Required">{@question.required}</:item>
     <:item title="Options">
-      <%= for option <- @question.options do %>
+      <%= for option <- @question.options || [] do %>
         <div>
           <%= option %>
         </div>

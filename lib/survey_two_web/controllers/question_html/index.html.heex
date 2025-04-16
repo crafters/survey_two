@@ -12,13 +12,13 @@
   </.header>
 
   <.table id="questions" rows={@questions}>
-    <:col :let={question} label="Text">{question.text}</:col>
+    <:col :let={question} label="Title">{question.title}</:col>
     <:col :let={question} label="Type">{question.type}</:col>
     <:col :let={question} label="Required">{question.required}</:col>
     <:col :let={question} label="Options">
     <div class="static-dropdown">
-      <div class="static-dropdown-btn" :if={question.options != []}>Show options</div>
-      <div class="static-dropdown-list" :if={question.options != []}>
+      <div class="static-dropdown-btn" :if={question.options != [] and question.options != nil}>Show options</div>
+      <div class="static-dropdown-list" :if={question.options != [] and question.options != nil}>
         <%= for option <- question.options do %>
           <div><%= option %></div>
         <% end %>
@@ -26,6 +26,16 @@
     </div>
     </:col>
     <:col :let={question} label="Position">{question.position}</:col>
+    <:action :let={question}>
+      <div class="flex space-x-2">
+        <.link href={~p"/surveys/#{@survey}/questions/#{question}/move?direction=up"} method="post" class="text-blue-500 hover:text-blue-700">
+          <.icon name="hero-arrow-up" />
+        </.link>
+        <.link href={~p"/surveys/#{@survey}/questions/#{question}/move?direction=down"} method="post" class="text-blue-500 hover:text-blue-700">
+          <.icon name="hero-arrow-down" />
+        </.link>
+      </div>
+    </:action>
     <:action :let={question}>
       <.link navigate={~p"/surveys/#{@survey}/questions/#{question}"}>Show</.link>
       <.link navigate={~p"/surveys/#{@survey}/questions/#{question}/edit"}>Edit</.link>
