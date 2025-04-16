@@ -11,5 +11,7 @@ defmodule SurveyTwo.Repo.Migrations.CreateSurveys do
 
       timestamps(type: :utc_datetime)
     end
+
+    create unique_index(:surveys, [:slug])
   end
 end

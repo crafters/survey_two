@@ -11,7 +11,7 @@ defmodule SurveyTwo.Surveys.Question do
     field :required, :boolean, default: false
     field :options, {:array, :string}
     field :position, :decimal
-    field :survey_id, :binary_id
+    belongs_to :survey, SurveyTwo.Surveys.Survey, type: :binary_id
 
     timestamps(type: :utc_datetime)
   end
@@ -20,6 +20,9 @@ defmodule SurveyTwo.Surveys.Question do
   def changeset(question, attrs) do
     question
     |> cast(attrs, [:title, :text, :type, :required, :options, :position, :survey_id])
-    |> validate_required([:title, :text, :type, :required, :position, :survey_id])
+    |> validate_required([:title, :type, :required, :position, :survey_id])
+    |> unique_constraint([:survey_id, :position], error_key: :position)
+    |> unique_constraint([:survey_id, :title], error_key: :title)
+    |> assoc_constraint(:survey)
   end
 end

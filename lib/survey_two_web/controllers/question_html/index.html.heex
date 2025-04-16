@@ -16,14 +16,14 @@
     <:col :let={question} label="Type">{question.type}</:col>
     <:col :let={question} label="Required">{question.required}</:col>
     <:col :let={question} label="Options">
-    <div class="static-dropdown">
-      <div class="static-dropdown-btn" :if={question.options != [] and question.options != nil}>Show options</div>
-      <div class="static-dropdown-list" :if={question.options != [] and question.options != nil}>
-        <%= for option <- question.options do %>
-          <div><%= option %></div>
-        <% end %>
+      <div class="hover-dropdown" :if={question.options != [] and question.options != nil}>
+        <div class="hover-trigger">Show options</div>
+        <ul class="menu hover-content">
+          <%= for option <- question.options do %>
+            <li><span><%= option %></span></li>
+          <% end %>
+        </ul>
       </div>
-    </div>
     </:col>
     <:col :let={question} label="Position">{question.position}</:col>
     <:action :let={question}>
@@ -49,39 +49,31 @@
 </Layouts.app>
 
 <style>
-    .static-dropdown {
+    .hover-dropdown {
       position: relative;
       display: inline-block;
-      width: 150px;
+      min-width: 120px;
     }
-    .static-dropdown-btn {
-      padding: 8px;
-      border: 1px solid #ccc;
-      background: #fafafa;
-      border-radius: 4px;
-      cursor: default;
+    .hover-trigger {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-neutral);
+      border-radius: var(--radius-field);
+      cursor: pointer;
+      display: inline-block;
     }
-    .static-dropdown-list {
+    .hover-content {
       display: none;
       position: absolute;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-top: 2px;
-      width: 100%;
+      left: 0;
+      min-width: 200px;
       z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      background-color: var(--color-base-100);
+      border: 1px solid var(--color-neutral);
+      border-radius: var(--radius-field);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 0.25rem;
     }
-    .static-dropdown:hover .static-dropdown-list {
+    .hover-dropdown:hover .hover-content {
       display: block;
-    }
-    .static-dropdown-list div {
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      cursor: default;
-      background: #fff;
-    }
-    .static-dropdown-list div:last-child {
-      border-bottom: none;
     }
   </style>

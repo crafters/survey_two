@@ -26,7 +26,8 @@ defmodule SurveyTwoWeb.QuestionController do
         |> redirect(to: ~p"/surveys/#{survey_id}/questions/#{question}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        survey = Surveys.get_survey!(survey_id)
+        render(conn, :new, survey: survey, changeset: changeset)
     end
   end
 

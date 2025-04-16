@@ -143,6 +143,12 @@ defmodule SurveyTwo.Surveys do
           target_pos = target_question.position
           swap_pos = swap_question.position
 
+          temp_pos = Decimal.div(Decimal.add(target_pos, swap_pos), Decimal.new(2))
+
+          swap_question
+          |> Ecto.Changeset.change(position: temp_pos)
+          |> Repo.update!()
+
           target_question
           |> Ecto.Changeset.change(position: swap_pos)
           |> Repo.update!()

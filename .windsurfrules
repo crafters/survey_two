@@ -1,0 +1,54 @@
+# General
+- don't add comments to the code, the code should be self-documenting
+- use meaningful variable names
+- keep functions small and focused
+- follow consistent code style
+
+# Elixir/Phoenix Backend
+- always sort alias alfabetically
+- group aliases by external deps, internal deps, and current app
+- always use `alias` over `import` unless `import` is specifically needed
+- always use `__MODULE__` when aliasing current module
+- keep context modules focused and small
+- name context functions with clear verbs (create_, update_, delete_)
+- prefer pattern matching in function heads over conditionals
+- use doctests for simple function documentation
+- write clear module and function documentation
+
+# Database/Ecto
+- always define schema types explicitly
+- always validate changesets
+- define database constraints in migrations and changesets
+- keep migrations small and focused
+- name migrations with clear descriptive names
+- use foreign key constraints
+- use `@type t :: %__MODULE__{}` for schema types
+
+# GraphQL/Absinthe
+- define clear type names and descriptions
+- group related queries and mutations in types
+- handle errors consistently using middleware
+- keep resolvers focused on data fetching
+- avoid n+1 queries by avoiding associations in resolvers
+- use dataloader for associations when strictly necessary
+- use input objects for complex mutations
+- validate input data at the schema level
+
+# React Frontend
+- always define prop types
+- avoid prop drilling, use context when needed
+- follow component naming conventions (PascalCase)
+- group related components in folders
+- keep components small and focused
+- organize styles consistently
+- use functional components over class components
+- separate business logic from presentation
+- use custom hooks for shared logic
+
+# Testing
+- follow arrange-act-assert pattern
+- test edge cases and error scenarios
+- test happy paths comprehensively
+- use descriptive test names
+- use factories for test data with ex_machina importing the factory module
+- no dinamyc loops in tests, preffer explicit code

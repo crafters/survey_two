@@ -26,10 +26,12 @@ defmodule SurveyTwoWeb.Router do
     end
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SurveyTwoWeb do
-  #   pipe_through :api
-  # end
+  # API routes
+  scope "/api", SurveyTwoWeb.API do
+    pipe_through :api
+
+    resources "/surveys", SurveyController, only: [:show]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:survey_two, :dev_routes) do
