@@ -1,0 +1,77 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Listing Questions
+    <:actions>
+    <.button navigate={~p"/surveys/#{@survey}"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button href={~p"/surveys/#{@survey}/questions/new"}>
+        <.icon name="hero-plus" /> New Question
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table id="questions" rows={@questions}>
+    <:col :let={question} label="Text">{question.text}</:col>
+    <:col :let={question} label="Type">{question.type}</:col>
+    <:col :let={question} label="Required">{question.required}</:col>
+    <:col :let={question} label="Options">
+    <div class="static-dropdown">
+      <div class="static-dropdown-btn" :if={question.options != []}>Show options</div>
+      <div class="static-dropdown-list" :if={question.options != []}>
+        <%= for option <- question.options do %>
+          <div><%= option %></div>
+        <% end %>
+      </div>
+    </div>
+    </:col>
+    <:col :let={question} label="Position">{question.position}</:col>
+    <:action :let={question}>
+      <.link navigate={~p"/surveys/#{@survey}/questions/#{question}"}>Show</.link>
+      <.link navigate={~p"/surveys/#{@survey}/questions/#{question}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={question}>
+      <.link href={~p"/surveys/#{@survey}/questions/#{question}"} method="delete" data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+</Layouts.app>
+
+<style>
+    .static-dropdown {
+      position: relative;
+      display: inline-block;
+      width: 150px;
+    }
+    .static-dropdown-btn {
+      padding: 8px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+      border-radius: 4px;
+      cursor: default;
+    }
+    .static-dropdown-list {
+      display: none;
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 2px;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .static-dropdown:hover .static-dropdown-list {
+      display: block;
+    }
+    .static-dropdown-list div {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      cursor: default;
+      background: #fff;
+    }
+    .static-dropdown-list div:last-child {
+      border-bottom: none;
+    }
+  </style>

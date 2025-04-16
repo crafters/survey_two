@@ -1,0 +1,24 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Survey {@survey.title}
+    <:subtitle>This is a survey record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/surveys"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button navigate={~p"/surveys/#{@survey}/questions"}>
+      Questions
+        <.icon name="hero-question-mark-circle" />
+      </.button>
+      <.button variant="primary" navigate={~p"/surveys/#{@survey}/edit?return_to=show"}>
+        <.icon name="hero-pencil-square" /> Edit survey
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Description">{@survey.description}</:item>
+    <:item title="Active">{@survey.active}</:item>
+    <:item title="Slug">{@survey.slug}</:item>
+  </.list>
+</Layouts.app>

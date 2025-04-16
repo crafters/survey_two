@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    New Survey
+    <:subtitle>Use this form to manage survey records in your database.</:subtitle>
+  </.header>
+
+  <.survey_form changeset={@changeset} action={~p"/surveys"} return_to={~p"/surveys"} />
+</Layouts.app>

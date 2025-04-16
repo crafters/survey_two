@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Edit Response {@response.id}
+    <:subtitle>Use this form to manage response records in your database.</:subtitle>
+  </.header>
+
+  <.response_form changeset={@changeset} action={~p"/responses/#{@response}"} return_to={~p"/responses"} />
+</Layouts.app>

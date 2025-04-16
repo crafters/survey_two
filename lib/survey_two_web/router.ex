@@ -18,6 +18,10 @@ defmodule SurveyTwoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    resources "/surveys", SurveyController do
+      resources "/questions", QuestionController
+    end
   end
 
   # Other scopes may use custom stacks.

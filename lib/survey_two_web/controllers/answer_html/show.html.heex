@@ -1,0 +1,18 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Answer {@answer.id}
+    <:subtitle>This is a answer record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/answers"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+      <.button variant="primary" navigate={~p"/answers/#{@answer}/edit?return_to=show"}>
+        <.icon name="hero-pencil-square" /> Edit answer
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Value">{@answer.value}</:item>
+  </.list>
+</Layouts.app>
