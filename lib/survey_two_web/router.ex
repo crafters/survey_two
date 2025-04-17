@@ -5,7 +5,18 @@ defmodule SurveyTwoWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {SurveyTwoWeb.Layouts, :root}
+  end
+
+  pipeline :react do
+    plug :browser
+    plug :put_root_layout, {SurveyTwoWeb.Layouts, :user_root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
+  pipeline :admin do
+    plug :browser
+    plug :put_root_layout, {SurveyTwoWeb.Layouts, :admin_root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -25,16 +36,17 @@ defmodule SurveyTwoWeb.Router do
   end
 
   scope "/", SurveyTwoWeb do
-    pipe_through :browser
-
-    get "/page", PageController, :home
+    pipe_through :admin
 
     resources "/surveys", SurveyController do
       resources "/questions", QuestionController do
         post "/move", QuestionController, :move
       end
     end
+  end
 
+  scope "/", SurveyTwoWeb do
+    pipe_through :react
     get "/*path", ReactController, :index
   end
 
