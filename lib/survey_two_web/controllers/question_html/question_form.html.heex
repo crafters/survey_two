@@ -9,13 +9,13 @@
     label="Question Type"
     options={[
       {"Text", "text"},
+      {"Single Choice", "single_choice"},
       {"Multiple Choice", "multiple_choice"},
-      {"Checkbox", "checkbox"},
       {"Dropdown", "dropdown"}
     ]}
   />
 
- <div class="mt-4 options-container" data-show-for="multiple_choice,checkbox,dropdown">
+ <div class="mt-4 options-container" data-show-for="single_choice,multiple_choice,dropdown">
     <label class="block text-sm font-medium text-gray-700 mb-2">Options</label>
     <div id="options-wrapper" class="space-y-2">
       <%= 

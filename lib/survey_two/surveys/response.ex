@@ -6,7 +6,9 @@ defmodule SurveyTwo.Surveys.Response do
   @foreign_key_type :binary_id
   schema "responses" do
     field :respondent_id, :string
-    field :survey_id, :binary_id
+
+    belongs_to :survey, SurveyTwo.Surveys.Survey
+    has_many :answers, SurveyTwo.Surveys.Answer
 
     timestamps(type: :utc_datetime)
   end
@@ -14,7 +16,8 @@ defmodule SurveyTwo.Surveys.Response do
   @doc false
   def changeset(response, attrs) do
     response
-    |> cast(attrs, [:respondent_id])
-    |> validate_required([:respondent_id])
+    |> cast(attrs, [:respondent_id, :survey_id])
+    |> validate_required([:survey_id])
+    |> assoc_constraint(:survey)
   end
 end

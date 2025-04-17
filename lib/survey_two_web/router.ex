@@ -11,19 +11,8 @@ defmodule SurveyTwoWeb.Router do
   end
 
   pipeline :api do
+    plug :fetch_session
     plug :accepts, ["json"]
-  end
-
-  scope "/", SurveyTwoWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
-
-    resources "/surveys", SurveyController do
-      resources "/questions", QuestionController do
-        post "/move", QuestionController, :move
-      end
-    end
   end
 
   # API routes
@@ -31,6 +20,22 @@ defmodule SurveyTwoWeb.Router do
     pipe_through :api
 
     resources "/surveys", SurveyController, only: [:show]
+    delete "/surveys/:id/clear_session", SurveyController, :clear_session
+    resources "/responses", ResponseController, only: [:update]
+  end
+
+  scope "/", SurveyTwoWeb do
+    pipe_through :browser
+
+    get "/page", PageController, :home
+
+    resources "/surveys", SurveyController do
+      resources "/questions", QuestionController do
+        post "/move", QuestionController, :move
+      end
+    end
+
+    get "/*path", ReactController, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

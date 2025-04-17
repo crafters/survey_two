@@ -11,7 +11,6 @@ defmodule SurveyTwo.Repo.Migrations.CreateAnswers do
       timestamps(type: :utc_datetime)
     end
 
-    create index(:answers, [:question_id])
-    create index(:answers, [:response_id])
+    create unique_index(:answers, [:response_id, :question_id])
   end
 end

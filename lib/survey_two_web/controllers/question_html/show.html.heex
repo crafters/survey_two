@@ -6,6 +6,9 @@
       <.button navigate={~p"/surveys/#{@survey}/questions"}>
         <.icon name="hero-arrow-left" />
       </.button>
+      <.button navigate={~p"/surveys/#{@survey}/questions/new"}>
+        <.icon name="hero-plus" /> New question
+      </.button>
       <.button variant="primary" navigate={~p"/surveys/#{@survey}/questions/#{@question}/edit?return_to=show"}>
         <.icon name="hero-pencil-square" /> Edit question
       </.button>
