@@ -19,9 +19,10 @@ const TextQuestion = ({ question, currentAnswer, onAnswerChange }) => {
 
   return (
     <div>
-      <h2>{question.title}</h2>
-      <p>{question.description || question.text}</p>
-      <input type='text' className='text-input' value={answer} onChange={handleChange} />
+      <h2>
+        {question.position}. {question.title}
+      </h2>
+      <textarea className="text-input" value={answer} onChange={handleChange} />
     </div>
   );
 };

@@ -14,9 +14,9 @@ const MultipleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => 
     if (isChecked) {
       newSelectedOptions = [...selectedOptions, option];
     } else {
-      newSelectedOptions = selectedOptions.filter(item => item !== option);
+      newSelectedOptions = selectedOptions.filter((item) => item !== option);
     }
-    
+
     setSelectedOptions(newSelectedOptions);
     if (onAnswerChange) {
       onAnswerChange(newSelectedOptions);
@@ -25,18 +25,19 @@ const MultipleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => 
 
   return (
     <div>
-      <h2>{question.title}</h2>
-      <p>{question.description || question.text}</p>
-      <div className='options-list'>
+      <h2>
+        {question.position}. {question.title}
+      </h2>
+      <div className="options-list">
         {question.options &&
           question.options.map((option, index) => {
             const isChecked = selectedOptions.includes(option);
             return (
-              <div key={index} className='option-item'>
-                <input 
-                  type='checkbox' 
-                  id={`option-${question.id}-${index}`} 
-                  name={`question-${question.id}`} 
+              <div key={index} className="option-item">
+                <input
+                  type="checkbox"
+                  id={`option-${question.id}-${index}`}
+                  name={`question-${question.id}`}
                   value={option}
                   checked={isChecked}
                   onChange={(e) => handleChange(option, e.target.checked)}

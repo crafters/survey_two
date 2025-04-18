@@ -18,14 +18,13 @@ const SingleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => {
 
   return (
     <div>
-      <h2>{question.title}</h2>
-      <p>{question.description || question.text}</p>
+      <h2>{question.position}. {question.title}</h2>
       <div className='options-list'>
         {question.options &&
           question.options.map((option, index) => (
             <div key={index} className='option-item'>
               <input 
-                type='radio' 
+                type='checkbox' 
                 id={`option-${question.id}-${index}`} 
                 name={`question-${question.id}`} 
                 value={option} 

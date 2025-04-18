@@ -19,8 +19,7 @@ const DropdownQuestion = ({ question, currentAnswer, onAnswerChange }) => {
 
   return (
     <div>
-      <h2>{question.title}</h2>
-      <p>{question.description || question.text}</p>
+      <h2>{question.position}. {question.title}</h2>
       <select 
         className="dropdown-select"
         value={selectedOption}
