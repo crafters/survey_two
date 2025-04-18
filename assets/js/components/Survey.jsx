@@ -181,28 +181,32 @@ const Survey = ({ params }) => {
 
   return (
     <>
-      <header className="survey-header">
-        <h1 className="survey-header-title">Omella</h1>
-        <p className="survey-header-subtitle">{survey.title}</p>
+      <header>
+        <img src="/images/Logotype_omela.svg" alt="" />
       </header>
       <section className="question-section">
-        <Question key={currentQuestion.id} question={currentQuestion} currentAnswer={answers[currentQuestion.id]} onAnswerChange={(answer) => handleAnswerChange(currentQuestion.id, answer)} />
+        <header className="survey-header">
+          <h1 className="survey-header-subtitle">{survey.title}</h1>
+        </header>
+        <div className="question-container">
+          <Question key={currentQuestion.id} question={currentQuestion} currentAnswer={answers[currentQuestion.id]} onAnswerChange={(answer) => handleAnswerChange(currentQuestion.id, answer)} />
 
-        <div className="progress-container">
-          {validationError && <div className="validation-error">{validationError}</div>}
-          <div className="navigation-controls">
-            <button className="nav-button prev-button" onClick={handlePrevious} disabled={isFirstQuestion}>
-              Previous
-            </button>
-            <button className="nav-button next-button" onClick={handleNext}>
-              {isLastQuestion ? 'Finish' : 'Next'}
-            </button>
-          </div>
-          <div className="question-progress">
-            Step {currentQuestionIndex + 1} of {survey.questions.length}
-          </div>
-          <div className="progress-bar-wrapper">
-            <div className="progress-bar-fill" style={{ width: `${((currentQuestionIndex + 1) / survey.questions.length) * 100}%` }} />
+          <div className="progress-container">
+            {validationError && <div className="validation-error">{validationError}</div>}
+            <div className="navigation-controls">
+              <button className="nav-button prev-button" onClick={handlePrevious} disabled={isFirstQuestion}>
+                Previous
+              </button>
+              <button className="nav-button next-button" onClick={handleNext}>
+                {isLastQuestion ? 'Finish' : 'Next'}
+              </button>
+            </div>
+            <div className="question-progress">
+              Step {currentQuestionIndex + 1} of {survey.questions.length}
+            </div>
+            <div className="progress-bar-wrapper">
+              <div className="progress-bar-fill" style={{ width: `${((currentQuestionIndex + 1) / survey.questions.length) * 100}%` }} />
+            </div>
           </div>
         </div>
       </section>
