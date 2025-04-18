@@ -23,7 +23,6 @@ const Question = ({ question, currentAnswer, onAnswerChange }) => {
   return (
     <div className='question-container'>
       {renderQuestionByType()}
-      {question.required && <div className='required-indicator'>* Required</div>}
     </div>
   );
 };

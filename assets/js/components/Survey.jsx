@@ -176,20 +176,20 @@ const Survey = ({ params }) => {
   const isLastQuestion = currentQuestionIndex === survey.questions.length - 1;
 
   if (isCompleted) {
-    return <ThankYouPage slug={slug} />;
+    return <ThankYouPage slug={slug} survey={survey} />;
   }
 
   return (
     <>
       <header className="survey-header">
-          <h1 className='survey-header-title'>Omella</h1>
-          <p className='survey-header-subtitle'>{survey.title}</p>
+        <h1 className="survey-header-title">Omella</h1>
+        <p className="survey-header-subtitle">{survey.title}</p>
       </header>
       <section className="question-section">
         <Question key={currentQuestion.id} question={currentQuestion} currentAnswer={answers[currentQuestion.id]} onAnswerChange={(answer) => handleAnswerChange(currentQuestion.id, answer)} />
 
         <div className="progress-container">
-        {validationError && <div className="validation-error">{validationError}</div>}
+          {validationError && <div className="validation-error">{validationError}</div>}
           <div className="navigation-controls">
             <button className="nav-button prev-button" onClick={handlePrevious} disabled={isFirstQuestion}>
               Previous

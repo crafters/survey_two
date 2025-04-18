@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'wouter';
 
-const ThankYouPage = ({ slug }) => {
+const ThankYouPage = ({ slug, survey }) => {
   const [redirect, setRedirect] = useState(false);
 
   const handleStartOver = async () => {
@@ -35,7 +35,7 @@ const ThankYouPage = ({ slug }) => {
           <div className="border-circle-medium" />
           <div className="border-circle-large" />
           <h1 className="survey-header-title survey-header-title-thank-you">Omella</h1>
-          <p className="survey-header-subtitle survey-header-subtitle-thank-you">User Experience Survey</p>
+          <p className="survey-header-subtitle survey-header-subtitle-thank-you">{survey.title}</p>
         </header>
         <div className="thank-you-container">
           <div className="thank-you-content">

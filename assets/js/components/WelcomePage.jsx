@@ -1,10 +1,30 @@
-import React from 'react';
-import { Link } from 'wouter';
+import React, { useState, useEffect } from 'react';
 
-const WelcomePage = () => {
+const WelcomePage = ({ params }) => {
+  const [survey, setSurvey] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSurvey = async () => {
+      try {
+        const response = await fetch(`/api/surveys/${params.slug}`);
+        const data = await response.json();
+        setSurvey(data.survey);
+      } catch (error) {
+        console.error('Error fetching survey:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSurvey();
+  }, [params.slug]);
+
   const handleStartSurvey = () => {
-    Link('/survey');
+    window.location.href = `/survey/${params.slug}/1`;
   };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <>
@@ -18,10 +38,10 @@ const WelcomePage = () => {
         </header>
         <div className="welcome-container">
           <div className="welcome-content">
-            <h2>We'd Love your feedback</h2>
-            <p>Your feedback shapes our journey. It only takes a minute - start now!</p>
+            <h2>{survey?.title || 'Survey'}</h2>
+            <p>{survey?.description || 'Survey description'}</p>
           </div>
-          <div className="navigation-controls ">
+          <div className="navigation-controls navigation-controls-welcome">
             <button onClick={handleStartSurvey} className="nav-button next-button">
               Start Survey
             </button>

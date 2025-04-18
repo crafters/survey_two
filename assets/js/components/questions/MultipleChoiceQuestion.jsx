@@ -28,6 +28,7 @@ const MultipleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => 
       <h2>
         {question.position}. {question.title}
       </h2>
+      {question.required && <div className="required-indicator">* Required</div>}
       <div className="options-list">
         {question.options &&
           question.options.map((option, index) => {
