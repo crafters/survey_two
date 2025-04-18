@@ -66,6 +66,7 @@ defmodule SurveyTwo.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.install": ["cmd yarn install --cwd assets --non-interactive"],
       "assets.setup": ["esbuild.install --if-missing"],
       "assets.build": ["esbuild survey_two"],
       "assets.deploy": [
