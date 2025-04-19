@@ -6,7 +6,7 @@ const ThankYouPage = ({ slug, survey }) => {
 
   const handleStartOver = async () => {
     try {
-      const response = await fetch(`/api/surveys/${slug}/clear_session`, {
+      const response = await fetch(`/api/surveys/${survey.id}/clear_session`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

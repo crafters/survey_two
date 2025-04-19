@@ -1558,6 +1558,30 @@
       background-image: none;
     }
   }
+
+  .hero-external-link {
+    --hero-external-link: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke-width%3D%221.5%22%20stroke%3D%22currentColor%22%20aria-hidden%3D%22true%22%20data-slot%3D%22icon%22%3E%20%20%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M13.5%206H5.25A2.25%202.25%200%200%200%203%208.25v10.5A2.25%202.25%200%200%200%205.25%2021h10.5A2.25%202.25%200%200%200%2018%2018.75V10.5m-10.5%206L21%203m0%200h-5.25M21%203v5.25%22%20%2F%3E%3C%2Fsvg%3E');
+    -webkit-mask: var(--hero-external-link);
+    mask: var(--hero-external-link);
+    mask-repeat: no-repeat;
+    background-color: currentColor;
+    vertical-align: middle;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .hero-eye {
+    --hero-eye: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke-width%3D%221.5%22%20stroke%3D%22currentColor%22%20aria-hidden%3D%22true%22%20data-slot%3D%22icon%22%3E%20%20%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M2.036%2012.322a1.012%201.012%200%200%201%200-.639C3.423%207.51%207.36%204.5%2012%204.5c4.638%200%208.573%203.007%209.963%207.178.07.207.07.431%200%20.639C20.577%2016.49%2016.64%2019.5%2012%2019.5c-4.638%200-8.573-3.007-9.963-7.178Z%22%20%2F%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M15%2012a3%203%200%201%201-6%200%203%203%200%200%201%206%200Z%22%20%2F%3E%3C%2Fsvg%3E');
+    -webkit-mask: var(--hero-eye);
+    mask: var(--hero-eye);
+    mask-repeat: no-repeat;
+    background-color: currentColor;
+    vertical-align: middle;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
   .hero-arrow-left {
     --hero-arrow-left: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke-width%3D%221.5%22%20stroke%3D%22currentColor%22%20aria-hidden%3D%22true%22%20data-slot%3D%22icon%22%3E%20%20%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M10.5%2019.5%203%2012m0%200%207.5-7.5M3%2012h18%22%2F%3E%3C%2Fsvg%3E');
     -webkit-mask: var(--hero-arrow-left);

@@ -1,17 +1,16 @@
 <Layouts.app flash={@flash}>
   <.header>
     Survey {@survey.title}
-    <:subtitle>Id: <a href={~p"/survey/#{@survey}"}>{@survey.id}</a></:subtitle>
+    <:subtitle>
+      <.link navigate={~p"/survey/#{@survey.slug}"} target="_blank"><.icon name="hero-external-link" /> {@survey.slug}</.link>
+    </:subtitle>
     <:actions>
       <.button navigate={~p"/surveys"}>
         <.icon name="hero-arrow-left" />
       </.button>
-      <.button navigate={~p"/surveys/#{@survey}/questions"}>
+      <.button navigate={~p"/surveys/#{@survey.slug}/questions"}>
       Questions
         <.icon name="hero-question-mark-circle" />
-      </.button>
-      <.button navigate={~p"/survey/#{@survey}"} target="_blank">
-        View
       </.button>
       <.button variant="primary" navigate={~p"/surveys/#{@survey}/edit?return_to=show"}>
         <.icon name="hero-pencil-square" /> Edit survey

@@ -4,8 +4,8 @@ defmodule SurveyTwoWeb.API.SurveyController do
   alias SurveyTwo.Repo
   alias SurveyTwo.Surveys
 
-  def show(conn, %{"id" => id}) do
-    survey = Surveys.get_survey!(id)
+  def show(conn, %{"id" => id_or_slug}) do
+    survey = Surveys.get_survey_by_id_or_slug!(id_or_slug)
     questions = Surveys.list_questions(survey.id)
     response_id = get_session(conn, :response_id)
 
@@ -14,7 +14,7 @@ defmodule SurveyTwoWeb.API.SurveyController do
         response = Surveys.get_response!(response_id) |> Repo.preload(:answers)
         {response, conn}
       else
-        {:ok, response} = Surveys.create_response(%{survey_id: id})
+        {:ok, response} = Surveys.create_response(%{survey_id: survey.id})
         response = Repo.preload(response, :answers)
         {response, put_session(conn, :response_id, response.id)}
       end

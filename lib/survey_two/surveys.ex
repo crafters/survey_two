@@ -38,6 +38,33 @@ defmodule SurveyTwo.Surveys do
   def get_survey!(id), do: Repo.get!(Survey, id)
 
   @doc """
+  Gets a single survey by ID or slug.
+
+  Raises `Ecto.NoResultsError` if the Survey does not exist.
+
+  ## Examples
+
+      iex> get_survey_by_id_or_slug!(123)
+      %Survey{}
+
+      iex> get_survey_by_id_or_slug!("my-survey-slug")
+      %Survey{}
+
+      iex> get_survey_by_id_or_slug!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_survey_by_id_or_slug!(id_or_slug) do
+    case Ecto.UUID.cast(id_or_slug) do
+      {:ok, uuid} ->
+        Repo.get!(Survey, uuid)
+
+      :error ->
+        Repo.get_by!(Survey, slug: id_or_slug)
+    end
+  end
+
+  @doc """
   Creates a survey.
 
   ## Examples

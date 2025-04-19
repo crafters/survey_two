@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const EmailQuestion = ({ question, currentAnswer, onAnswerChange }) => {
   const [answer, setAnswer] = useState(currentAnswer || '');
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const debounceTimerRef = useRef(null);
 
   useEffect(() => {
