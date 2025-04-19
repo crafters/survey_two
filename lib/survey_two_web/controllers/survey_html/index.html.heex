@@ -14,6 +14,7 @@
     <:col :let={survey} label="Active">{survey.active}</:col>
     <:col :let={survey} label="Slug">{survey.slug}</:col>
     <:action :let={survey}>
+      <.link navigate={~p"/survey/#{survey}"} target="_blank">View</.link>
       <.link navigate={~p"/surveys/#{survey}"}>Show</.link>
       <.link navigate={~p"/surveys/#{survey}/edit"}>Edit</.link>
     </:action>
