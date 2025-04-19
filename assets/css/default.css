@@ -7,8 +7,7 @@
 @layer theme {
   :root,
   :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      'Noto Color Emoji';
+    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --color-black: #000;
     --spacing: 0.25rem;
@@ -52,16 +51,7 @@
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     tab-size: 4;
-    font-family: var(
-      --default-font-family,
-      ui-sans-serif,
-      system-ui,
-      sans-serif,
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      'Noto Color Emoji'
-    );
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
     font-feature-settings: var(--default-font-feature-settings, normal);
     font-variation-settings: var(--default-font-variation-settings, normal);
     -webkit-tap-highlight-color: transparent;
@@ -100,17 +90,7 @@
   kbd,
   samp,
   pre {
-    font-family: var(
-      --default-mono-font-family,
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      'Liberation Mono',
-      'Courier New',
-      monospace
-    );
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace);
     font-feature-settings: var(--default-mono-font-feature-settings, normal);
     font-variation-settings: var(--default-mono-font-variation-settings, normal);
     font-size: 1em;
@@ -317,10 +297,11 @@
       rotate: 45deg;
       translate: 0 1px;
     }
-    :where(
-        li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title),
-        li:not(.menu-title, .disabled) > details > summary:not(.menu-title)
-      ):not(.menu-active, :active, .btn) {
+    :where(li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title), li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(
+        .menu-active,
+        :active,
+        .btn
+      ) {
       &.menu-focus,
       &:focus-visible {
         cursor: pointer;
@@ -605,10 +586,7 @@
     user-select: none;
     grid-template-columns: 0fr 1fr 1fr;
     --radius-selector-max: calc(var(--radius-selector) + var(--radius-selector) + var(--radius-selector));
-    border-radius: calc(
-      var(--radius-selector) + min(var(--toggle-p), var(--radius-selector-max)) +
-        min(var(--border), var(--radius-selector-max))
-    );
+    border-radius: calc(var(--radius-selector) + min(var(--toggle-p), var(--radius-selector-max)) + min(var(--border), var(--radius-selector-max)));
     padding: var(--toggle-p);
     box-shadow: 0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000) inset;
     transition: color 0.3s, grid-template-columns 0.2s;
@@ -670,8 +648,7 @@
       --tw-content: '';
       content: var(--tw-content);
       transition: background-color 0.1s, translate 0.2s, inset-inline-start 0.2s;
-      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset,
-        0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
+      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
         0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000);
       background-size: auto, calc(var(--noise) * 100%);
       background-image: none, var(--fx-noise);
@@ -742,8 +719,7 @@
     border-end-start-radius: var(--join-es, var(--radius-field));
     border-end-end-radius: var(--join-ee, var(--radius-field));
     border-color: var(--input-color);
-    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset,
-      0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset, 0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
     --size: calc(var(--size-field, 0.25rem) * 10);
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
     &:where(input) {
@@ -914,11 +890,9 @@
       top: 50%;
       color: var(--range-progress);
       transform: translateY(-50%);
-      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset,
-        0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
+      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
         0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000), 0 0 0 2rem var(--range-thumb) inset,
-        calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0
-          calc(100rem * var(--range-fill));
+        calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
     }
     &::-moz-range-track {
       width: 100%;
@@ -936,11 +910,9 @@
       border: var(--range-p) solid;
       top: 50%;
       color: var(--range-progress);
-      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset,
-        0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
+      box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
         0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000), 0 0 0 2rem var(--range-thumb) inset,
-        calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0
-          calc(100rem * var(--range-fill));
+        calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2)) 0 0 calc(100rem * var(--range-fill));
     }
     &:disabled {
       cursor: not-allowed;
@@ -1058,14 +1030,12 @@
     border-start-end-radius: var(--join-se, var(--radius-field));
     border-end-start-radius: var(--join-es, var(--radius-field));
     border-end-end-radius: var(--join-ee, var(--radius-field));
-    background-image: linear-gradient(45deg, #0000 50%, currentColor 50%),
-      linear-gradient(135deg, currentColor 50%, #0000 50%);
+    background-image: linear-gradient(45deg, #0000 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, #0000 50%);
     background-position: calc(100% - 20px) calc(1px + 50%), calc(100% - 16.1px) calc(1px + 50%);
     background-size: 4px 4px, 4px 4px;
     background-repeat: no-repeat;
     text-overflow: ellipsis;
-    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset,
-      0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset, 0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
     border-color: var(--input-color);
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
     --size: calc(var(--size-field, 0.25rem) * 10);
@@ -1179,8 +1149,7 @@
     &:checked,
     &[aria-checked='true'] {
       background-color: var(--input-color, #0000);
-      box-shadow: 0 0 #0000 inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
-        0 1px oklch(0% 0 0 / calc(var(--depth) * 0.1));
+      box-shadow: 0 0 #0000 inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px oklch(0% 0 0 / calc(var(--depth) * 0.1));
       &:before {
         clip-path: polygon(20% 100%, 20% 80%, 50% 80%, 50% 0%, 70% 0%, 70% 100%);
         opacity: 100%;
@@ -1249,8 +1218,8 @@
       background-color: var(--color-base-100);
       &:before {
         background-color: currentColor;
-        box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset,
-          0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px oklch(0% 0 0 / calc(var(--depth) * 0.1));
+        box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
+          0 1px oklch(0% 0 0 / calc(var(--depth) * 0.1));
       }
       @media (forced-colors: active) {
         &:before {
@@ -1353,8 +1322,7 @@
     padding-inline-end: 0.75rem;
     font-size: 0.875rem;
     border-color: var(--input-color);
-    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset,
-      0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset, 0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
     textarea {
       appearance: none;
@@ -1785,12 +1753,7 @@
     background-size: auto, calc(var(--noise) * 100%);
     background-image: none, var(--fx-noise);
     box-shadow: 0 3px 0 -2px oklch(100% 0 0 / calc(var(--depth) * 0.08)) inset,
-      0 1px
-        color-mix(
-          in oklab,
-          color-mix(in oklab, #000 20%, var(--alert-color, var(--color-base-200))) calc(var(--depth) * 20%),
-          #0000
-        ),
+      0 1px color-mix(in oklab, color-mix(in oklab, #000 20%, var(--alert-color, var(--color-base-200))) calc(var(--depth) * 20%), #0000),
       0 4px 3px -2px oklch(0% 0 0 / calc(var(--depth) * 0.08));
     &:has(:nth-child(2)) {
       grid-template-columns: auto minmax(auto, 1fr);
@@ -2203,13 +2166,12 @@
   }
   .brightness-200 {
     --tw-brightness: brightness(200%);
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate)
-      var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia)
+      var(--tw-drop-shadow);
   }
   .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke,
-      --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate,
-      filter, -webkit-backdrop-filter, backdrop-filter;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via,
+      --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -2474,13 +2436,7 @@
   }
 }
 @layer base {
-  :root:has(
-      .modal-open,
-      .modal[open],
-      .modal:target,
-      .modal-toggle:checked,
-      .drawer:not([class*='drawer-open']) > .drawer-toggle:checked
-    ) {
+  :root:has(.modal-open, .modal[open], .modal:target, .modal-toggle:checked, .drawer:not([class*='drawer-open']) > .drawer-toggle:checked) {
     overflow: hidden;
   }
 }
@@ -2500,15 +2456,7 @@
   }
 }
 @layer base {
-  :where(
-      :root:has(
-          .modal-open,
-          .modal[open],
-          .modal:target,
-          .modal-toggle:checked,
-          .drawer:not(.drawer-open) > .drawer-toggle:checked
-        )
-    ) {
+  :where(:root:has(.modal-open, .modal[open], .modal:target, .modal-toggle:checked, .drawer:not(.drawer-open) > .drawer-toggle:checked)) {
     scrollbar-gutter: stable;
     background-image: linear-gradient(var(--color-base-100), var(--color-base-100));
     --root-bg: color-mix(in srgb, var(--color-base-100), oklch(0% 0 0) 40%);
@@ -2565,7 +2513,7 @@
       --color-base-200: oklch(25.26% 0.014 253.1);
       --color-base-300: oklch(20.15% 0.012 254.09);
       --color-base-content: oklch(97.807% 0.029 256.847);
-      --color-primary: #F97D7D;
+      --color-primary: #f97d7d;
       --color-primary-content: oklch(96% 0.018 272.314);
       --color-secondary: oklch(58% 0.233 277.117);
       --color-secondary-content: oklch(96% 0.018 272.314);
@@ -2600,7 +2548,7 @@
     --color-base-200: oklch(25.26% 0.014 253.1);
     --color-base-300: oklch(20.15% 0.012 254.09);
     --color-base-content: oklch(97.807% 0.029 256.847);
-    --color-primary: #F97D7D;
+    --color-primary: #f97d7d;
     --color-primary-content: oklch(96% 0.018 272.314);
     --color-secondary: oklch(58% 0.233 277.117);
     --color-secondary-content: oklch(96% 0.018 272.314);
@@ -2632,10 +2580,10 @@
   [data-theme='light'] {
     color-scheme: light;
     --color-base-100: oklch(98% 0 0);
-    --color-base-200: #F5F5F5;
+    --color-base-200: #f5f5f5;
     --color-base-300: oklch(92% 0.004 286.32);
     --color-base-content: oklch(21% 0.006 285.885);
-    --color-primary: #F97D7D;
+    --color-primary: #f97d7d;
     --color-primary-content: oklch(98% 0.016 73.684);
     --color-secondary: oklch(55% 0.027 264.364);
     --color-secondary-content: oklch(98% 0.002 247.839);
