@@ -75,6 +75,28 @@ h2 {
 .question-container p {
   margin-top: 0;
   margin-bottom: 16px;
+  color: #4a5568;
+}
+
+.email-input {
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  padding: 12px;
+  border: 1px solid #888888;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: none;
+}
+
+.email-input:focus {
+  outline: none;
+}
+
+.email-input.invalid {
+  border-color: #f97d7d;
+  background-color: rgba(249, 125, 125, 0.05);
 }
 
 .text-input:focus {

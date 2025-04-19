@@ -3,6 +3,8 @@ import TextQuestion from './questions/TextQuestion';
 import SingleChoiceQuestion from './questions/SingleChoiceQuestion';
 import MultipleChoiceQuestion from './questions/MultipleChoiceQuestion';
 import DropdownQuestion from './questions/DropdownQuestion';
+import EmailQuestion from './questions/EmailQuestion';
+import PhoneQuestion from './questions/PhoneQuestion';
 
 const Question = ({ question, currentAnswer, onAnswerChange }) => {
   const renderQuestionByType = () => {
@@ -15,6 +17,10 @@ const Question = ({ question, currentAnswer, onAnswerChange }) => {
         return <MultipleChoiceQuestion question={question} currentAnswer={currentAnswer} onAnswerChange={onAnswerChange} />;
       case 'dropdown':
         return <DropdownQuestion question={question} currentAnswer={currentAnswer} onAnswerChange={onAnswerChange} />;
+      case 'email':
+        return <EmailQuestion question={question} currentAnswer={currentAnswer} onAnswerChange={onAnswerChange} />;
+      case 'phone':
+        return <PhoneQuestion question={question} currentAnswer={currentAnswer} onAnswerChange={onAnswerChange} />;
       default:
         return <TextQuestion question={question} currentAnswer={currentAnswer} onAnswerChange={onAnswerChange} />;
     }

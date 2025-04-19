@@ -8,7 +8,7 @@ defmodule SurveyTwo.Repo.Migrations.CreateQuestions do
       add :text, :text
       add :type, :string, null: false
       add :required, :boolean, default: false, null: false
-      add :options, {:array, :string}
+      add :options, {:array, :text}
       add :position, :decimal
       add :survey_id, references(:surveys, on_delete: :nothing, type: :binary_id), null: false
 
