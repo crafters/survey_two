@@ -8,7 +8,6 @@ import ErrorPage from './ErrorPage';
 function App() {
   return (
     <ErrorBoundary fallback={ErrorPage}>
-      <Link to='/surveys'>Survey</Link>
       <Switch>
         <Route path='/survey/:slug' component={WelcomePage} />
         <Route path='/survey/:slug/:questionIndex?' component={Survey} />
