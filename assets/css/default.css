@@ -139,7 +139,6 @@
   embed,
   object {
     display: block;
-    vertical-align: middle;
   }
   img,
   video {
@@ -395,7 +394,6 @@
     text-align: center;
     vertical-align: middle;
     outline-offset: 2px;
-    webkit-user-select: none;
     user-select: none;
     padding-inline: var(--btn-p);
     color: var(--btn-fg);
@@ -582,7 +580,6 @@
     appearance: none;
     place-content: center;
     vertical-align: middle;
-    webkit-user-select: none;
     user-select: none;
     grid-template-columns: 0fr 1fr 1fr;
     --radius-selector-max: calc(var(--radius-selector) + var(--radius-selector) + var(--radius-selector));
@@ -835,7 +832,6 @@
   }
   .range {
     appearance: none;
-    webkit-appearance: none;
     --range-thumb: var(--color-base-100);
     --range-thumb-size: calc(var(--size-selector, 0.25rem) * 6);
     --range-progress: currentColor;
@@ -886,7 +882,6 @@
       width: var(--range-thumb-size);
       border: var(--range-p) solid;
       appearance: none;
-      webkit-appearance: none;
       top: 50%;
       color: var(--range-progress);
       transform: translateY(-50%);
