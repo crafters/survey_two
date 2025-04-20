@@ -5,8 +5,7 @@ defmodule SurveyTwo.Surveys do
 
   import Ecto.Query, warn: false
   alias SurveyTwo.Repo
-
-  alias SurveyTwo.Surveys.Survey
+  alias SurveyTwo.Surveys.{Slug, Survey}
 
   @doc """
   Returns the list of surveys.
@@ -67,6 +66,9 @@ defmodule SurveyTwo.Surveys do
   @doc """
   Creates a survey.
 
+  Uses an optimistic approach for slug generation. If the insert fails due to a slug collision,
+  it will retry with a new slug up to 3 times.
+
   ## Examples
 
       iex> create_survey(%{field: value})
@@ -79,7 +81,35 @@ defmodule SurveyTwo.Surveys do
   def create_survey(attrs \\ %{}) do
     %Survey{}
     |> Survey.changeset(attrs)
-    |> Repo.insert()
+    |> save_with_unique_slug(3)
+  end
+
+  defp save_with_unique_slug(changeset, 0) do
+    {:error, changeset}
+  end
+
+  defp save_with_unique_slug(changeset, attempts_left) do
+    result = Repo.insert_or_update(changeset)
+
+    case result do
+      {:ok, survey} ->
+        {:ok, survey}
+
+      {:error, %Ecto.Changeset{errors: errors} = changeset} ->
+        case Keyword.get(errors, :slug) do
+          {_message, [constraint: :unique, constraint_name: _]} ->
+            current_slug = Ecto.Changeset.get_field(changeset, :slug)
+            extra_char = Slug.generate(1)
+            extended_slug = current_slug <> extra_char
+
+            %{changeset | errors: Keyword.delete(changeset.errors, :slug), valid?: true}
+            |> Ecto.Changeset.put_change(:slug, extended_slug)
+            |> save_with_unique_slug(attempts_left - 1)
+
+          _ ->
+            {:error, changeset}
+        end
+    end
   end
 
   @doc """
@@ -97,7 +127,7 @@ defmodule SurveyTwo.Surveys do
   def update_survey(%Survey{} = survey, attrs) do
     survey
     |> Survey.changeset(attrs)
-    |> Repo.update()
+    |> save_with_unique_slug(3)
   end
 
   @doc """
