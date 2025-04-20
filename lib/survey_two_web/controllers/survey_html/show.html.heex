@@ -2,7 +2,7 @@
   <.header>
     Survey {@survey.title}
     <:subtitle>
-      <.link navigate={~p"/survey/#{@survey.slug}"} target="_blank"><.icon name="hero-external-link" /> {@survey.slug}</.link>
+      <.link navigate={~p"/#{@survey.slug}"} target="_blank"><.icon name="hero-external-link" /> {@survey.slug}</.link>
     </:subtitle>
     <:actions>
       <.button navigate={~p"/surveys"}>

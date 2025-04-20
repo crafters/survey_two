@@ -1,6 +1,7 @@
 <.form :let={f} for={@changeset} action={@action}>
   <.input field={f[:title]} type="text" label="Title" />
   <.input field={f[:description]} type="textarea" label="Description" />
+  <.input field={f[:thanks_message]} type="textarea" label="Thank you message" />
   <.input field={f[:active]} type="checkbox" label="Active" />
   <.input field={f[:slug]} type="text" label="Slug" />
   <footer>

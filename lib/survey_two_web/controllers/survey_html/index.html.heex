@@ -9,7 +9,7 @@
   </.header>
 
   <.table id="surveys" rows={@surveys}>
-    <:col :let={survey} label="Open"><.link navigate={~p"/survey/#{survey.slug}"} target="_blank"><.icon name="hero-external-link" /></.link></:col>
+    <:col :let={survey} label="Open"><.link navigate={~p"/#{survey.slug}"} target="_blank"><.icon name="hero-external-link" /></.link></:col>
     <:col :let={survey} label="Title">{survey.title}</:col>
     <:col :let={survey} label="Description">{survey.description}</:col>
     <:col :let={survey} label="Active">{survey.active}</:col>

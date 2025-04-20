@@ -8,6 +8,7 @@ defmodule SurveyTwo.Surveys.Survey do
     field :title, :string
     field :description, :string
     field :active, :boolean, default: false
+    field :thanks_message, :string
     field :slug, :string
 
     timestamps(type: :utc_datetime)
@@ -16,7 +17,7 @@ defmodule SurveyTwo.Surveys.Survey do
   @doc false
   def changeset(survey, attrs) do
     survey
-    |> cast(attrs, [:title, :description, :active, :slug])
+    |> cast(attrs, [:title, :description, :active, :thanks_message, :slug])
     |> validate_required([:title, :description, :active])
     |> maybe_generate_slug()
     |> unique_constraint(:slug)

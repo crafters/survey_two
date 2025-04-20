@@ -6,6 +6,7 @@ defmodule SurveyTwo.Repo.Migrations.CreateSurveys do
       add :id, :binary_id, primary_key: true
       add :title, :string
       add :description, :text
+      add :thanks_message, :text
       add :active, :boolean, default: false, null: false
       add :slug, :string
 

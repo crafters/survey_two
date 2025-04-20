@@ -24,7 +24,7 @@ const ThankYouPage = ({ slug, survey }) => {
   };
 
   if (redirect) {
-    window.location.href = `/survey/${slug}/1`;
+    window.location.href = `/${slug}`;
   }
 
   return (
@@ -40,7 +40,7 @@ const ThankYouPage = ({ slug, survey }) => {
         <div className='thank-you-container'>
           <div className='thank-you-content'>
             <h2>You're all done!</h2>
-            <p>Thanks for sharing your thoughts! Your feedback help us make future events even better. See you at the next prom!</p>
+            <p>{survey.thanks_message || 'Thanks for sharing your thoughts! See you soon!'}</p>
             <div className='button-container' style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center' }}></div>
           </div>
 

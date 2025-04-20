@@ -9,8 +9,8 @@ function App() {
   return (
     <ErrorBoundary fallback={ErrorPage}>
       <Switch>
-        <Route path='/survey/:slug' component={WelcomePage} />
-        <Route path='/survey/:slug/:questionIndex?' component={Survey} />
+        <Route path='/:slug' component={WelcomePage} />
+        <Route path='/:slug/:questionIndex?' component={Survey} />
       </Switch>
     </ErrorBoundary>
   );

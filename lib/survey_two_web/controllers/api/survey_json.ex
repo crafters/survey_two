@@ -16,6 +16,7 @@ defmodule SurveyTwoWeb.API.SurveyJSON do
       id: survey.id,
       title: survey.title,
       description: survey.description,
+      thanks_message: survey.thanks_message,
       active: survey.active,
       slug: survey.slug,
       questions: for(question <- questions, do: question_data(question)),
