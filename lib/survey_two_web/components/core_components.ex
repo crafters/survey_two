@@ -383,6 +383,31 @@ defmodule SurveyTwoWeb.CoreComponents do
   end
 
   @doc """
+  Renders a data list.
+
+  ## Examples
+
+      <.list>
+        <:item title="Title">{@post.title}</:item>
+        <:item title="Views">{@post.views}</:item>
+      </.list>
+  """
+  slot :item, required: true do
+    attr :title, :string, required: true
+  end
+
+  def flat_list(assigns) do
+    ~H"""
+    <ul class="list">
+      <li :for={item <- @item} class="list-row">
+        <div class="font-bold">{item.title}</div>
+        <div>{render_slot(item)}</div>
+      </li>
+    </ul>
+    """
+  end
+
+  @doc """
   Renders a [Heroicon](https://heroicons.com).
 
   Heroicons come in three styles – outline, solid, and mini.

@@ -115,10 +115,14 @@ const Survey = ({ params }) => {
     if (!survey?.response?.id) return;
 
     try {
-      const allAnswers = Object.entries(answersToSave).map(([qId, value]) => ({
-        question_id: qId,
-        value: value,
-      }));
+      const allAnswers = Object.entries(answersToSave).map(([qId, value]) => {
+        const question = survey.questions.find((q) => q.id === qId);
+        return {
+          question_id: qId,
+          value: value,
+          question_title: question?.title,
+        };
+      });
 
       const response = await fetch(`/api/responses/${survey.response.id}`, {
         method: 'PUT',

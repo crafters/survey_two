@@ -12,6 +12,9 @@
       Questions
         <.icon name="hero-question-mark-circle" />
       </.button>
+      <.button navigate={~p"/surveys/#{@survey}/responses"}>
+      Responses
+      </.button>
       <.button variant="primary" navigate={~p"/surveys/#{@survey}/edit?return_to=show"}>
         <.icon name="hero-pencil-square" /> Edit survey
       </.button>

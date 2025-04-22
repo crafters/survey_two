@@ -3,6 +3,7 @@ import { Link, Redirect } from 'wouter';
 
 const ThankYouPage = ({ slug, survey }) => {
   const [redirect, setRedirect] = useState(false);
+  const [goToFirstQuestion, setGoToFirstQuestion] = useState(false);
 
   const handleStartOver = async () => {
     try {
@@ -27,6 +28,10 @@ const ThankYouPage = ({ slug, survey }) => {
     window.location.href = `/${slug}`;
   }
 
+  if (goToFirstQuestion && survey.questions && survey.questions.length > 0) {
+    window.location.href = `/${slug}/questions/1`;
+  }
+
   return (
     <>
       <section className='thank-you-section'>
@@ -45,7 +50,7 @@ const ThankYouPage = ({ slug, survey }) => {
           </div>
 
           <div className='navigation-controls navigation-controls-thank-you'>
-            <button onClick={() => setRedirect(true)} className='nav-button next-button'>
+            <button onClick={() => setGoToFirstQuestion(true)} className='nav-button next-button'>
               See my answers
             </button>
             <button className='nav-button prev-button' onClick={handleStartOver}>

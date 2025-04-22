@@ -344,8 +344,12 @@ defmodule SurveyTwo.Surveys do
       [%Response{}, ...]
 
   """
-  def list_responses do
-    Repo.all(Response)
+  def list_survey_with_responses(survey_id) do
+    from(s in Survey,
+      where: s.id == ^survey_id,
+      preload: [responses: :answers]
+    )
+    |> Repo.one()
   end
 
   @doc """
@@ -362,7 +366,13 @@ defmodule SurveyTwo.Surveys do
       ** (Ecto.NoResultsError)
 
   """
-  def get_response!(id), do: Repo.get!(Response, id)
+  def get_response!(id) do
+    from(r in Response,
+      where: r.id == ^id,
+      preload: [:survey, :answers]
+    )
+    |> Repo.one()
+  end
 
   @doc """
   Creates a response.

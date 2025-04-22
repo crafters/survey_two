@@ -1,23 +1,21 @@
 <Layouts.app flash={@flash}>
   <.header>
-    Listing Responses
+    Listing Responses for Survey {@survey.title}
     <:actions>
-      <.button href={~p"/responses/new"}>
-        <.icon name="hero-plus" /> New Response
+<.button navigate={~p"/surveys/#{@survey}"}>
+        <.icon name="hero-arrow-left" />
       </.button>
     </:actions>
   </.header>
 
-  <.table id="responses" rows={@responses} row_click={&JS.navigate(~p"/responses/#{&1}")}>
-    <:col :let={response} label="Respondent">{response.respondent_id}</:col>
+  <.table id="responses" rows={@responses}>
+    <:col :let={response} label="Id">{response.id}</:col>
+    <:col :let={response} label="Answers">{Enum.count(response.answers)}</:col>
     <:action :let={response}>
-      <div class="sr-only">
-        <.link navigate={~p"/responses/#{response}"}>Show</.link>
-      </div>
-      <.link navigate={~p"/responses/#{response}/edit"}>Edit</.link>
+      <.link navigate={~p"/surveys/#{@survey}/responses/#{response}"}>Show</.link>
     </:action>
     <:action :let={response}>
-      <.link href={~p"/responses/#{response}"} method="delete" data-confirm="Are you sure?">
+      <.link href={~p"/surveys/#{@survey}/responses/#{response}"} method="delete" data-confirm="Are you sure?">
         Delete
       </.link>
     </:action>

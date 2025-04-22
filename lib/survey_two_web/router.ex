@@ -42,6 +42,8 @@ defmodule SurveyTwoWeb.Router do
       resources "/questions", QuestionController do
         post "/move", QuestionController, :move
       end
+
+      resources "/responses", ResponseController, only: [:index, :show, :delete]
     end
   end
 

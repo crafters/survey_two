@@ -12,6 +12,9 @@ defmodule SurveyTwo.Surveys.Survey do
     field :thanks_message, :string
     field :slug, :string
 
+    has_many :responses, SurveyTwo.Surveys.Response
+    has_many :questions, SurveyTwo.Surveys.Question
+
     timestamps(type: :utc_datetime)
   end
 

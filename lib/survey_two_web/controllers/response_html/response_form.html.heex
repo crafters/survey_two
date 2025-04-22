@@ -1,7 +1,0 @@
-<.form :let={f} for={@changeset} action={@action}>
-  <.input field={f[:respondent_id]} type="text" label="Respondent" />
-  <footer>
-    <.button variant="primary">Save Response</.button>
-    <.button :if={@return_to} href={@return_to}>Cancel</.button>
-  </footer>
-</.form>
