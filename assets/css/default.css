@@ -2719,3 +2719,28 @@
     transform: rotate(360deg);
   }
 }
+
+@layer components {
+  .options-container {
+    > .option-list {
+      > div {
+        padding: 0.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+        > textarea {
+          min-height: 2rem;
+          padding: 0.5rem;
+          width: 100%;
+          height: fit-content;
+          text-overflow: ellipsis;
+          border-bottom: 1px solid #ddd;
+        }
+      }
+    }
+    > button.add-option {
+      margin-bottom: 2rem;
+    }
+  }
+}

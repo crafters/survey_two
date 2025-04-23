@@ -1,11 +1,13 @@
 # General
-- don't add comments to the code, the code should be self-documenting
+- don't add comments to the code
+- code should be self documenting
 - use meaningful variable names
 - keep functions small and focused
 - follow consistent code style
 
 # Elixir/Phoenix Backend
-- always sort alias alfabetically
+- don't add comments to the code
+- always sort alias alphabetically
 - group aliases by external deps, internal deps, and current app
 - always use `alias` over `import` unless `import` is specifically needed
 - always use `__MODULE__` when aliasing current module
@@ -16,6 +18,7 @@
 - write clear module and function documentation
 
 # Database/Ecto
+- don't add comments to the code
 - always define schema types explicitly
 - always validate changesets
 - define database constraints in migrations and changesets
@@ -25,6 +28,7 @@
 - use `@type t :: %__MODULE__{}` for schema types
 
 # GraphQL/Absinthe
+- don't add comments to the code
 - define clear type names and descriptions
 - group related queries and mutations in types
 - handle errors consistently using middleware
@@ -35,6 +39,7 @@
 - validate input data at the schema level
 
 # React Frontend
+- don't add comments to the code
 - always define prop types
 - avoid prop drilling, use context when needed
 - follow component naming conventions (PascalCase)
@@ -45,7 +50,11 @@
 - separate business logic from presentation
 - use custom hooks for shared logic
 
+# HTML and eex files
+- don't add comments to the code
+
 # Testing
+- don't add comments to the code
 - follow arrange-act-assert pattern
 - test edge cases and error scenarios
 - test happy paths comprehensively
