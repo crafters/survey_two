@@ -29,7 +29,7 @@ const ThankYouPage = ({ slug, survey }) => {
   }
 
   if (goToFirstQuestion && survey.questions && survey.questions.length > 0) {
-    window.location.href = `/${slug}/questions/1`;
+    window.location.href = `/${slug}/1`;
   }
 
   return (

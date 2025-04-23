@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, useSearchParams } from 'wouter';
 import Question from './Question';
 import ThankYouPage from './ThankYouPage';
+import WelcomePage from './WelcomePage';
 
 const Survey = ({ params }) => {
   const { slug, questionIndex } = params;
@@ -11,13 +12,20 @@ const Survey = ({ params }) => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [validationError, setValidationError] = useState('');
   const [_location, setLocation] = useLocation();
+  const [queryParams, setQueryParams] = useSearchParams();
   const debounceTimer = useRef(null);
 
   useEffect(() => {
     const fetchSurvey = async () => {
-      const response = await fetch(`/api/surveys/${slug}`);
-      const data = await response.json();
+      const responseId = queryParams.get('r');
+
+      const url = responseId ? `/api/surveys/${slug}?response_id=${responseId}` : `/api/surveys/${slug}`;
+
+      const apiResponse = await fetch(url);
+      const data = await apiResponse.json();
+
       setSurvey(data.survey);
+      setQueryParams({ ...queryParams, r: data.survey?.response?.id });
 
       if (data.survey.response?.answers) {
         const answersObj = data.survey.response.answers.reduce((acc, answer) => {
@@ -57,10 +65,6 @@ const Survey = ({ params }) => {
       }
     };
   }, []);
-
-  if (!survey) {
-    return <div>Loading...</div>;
-  }
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
@@ -170,16 +174,26 @@ const Survey = ({ params }) => {
   };
 
   const updateUrlWithQuestionIndex = (index) => {
-    setLocation(`/${slug}/${index + 1}`);
+    const responseId = queryParams?.response_id;
+    const queryString = responseId ? `?r=${responseId}` : '';
+    setLocation(`/${slug}/${index + 1}${queryString}`);
   };
 
-  const currentQuestion = survey.questions[currentQuestionIndex];
-  const isFirstQuestion = currentQuestionIndex === 0;
-  const isLastQuestion = currentQuestionIndex === survey.questions.length - 1;
+  if (!survey) {
+    return <div>Loading...</div>;
+  }
+
+  if (questionIndex === undefined) {
+    return <WelcomePage survey={survey} slug={slug} responseId={queryParams?.response_id} />;
+  }
 
   if (isCompleted) {
     return <ThankYouPage slug={slug} survey={survey} />;
   }
+
+  const currentQuestion = survey.questions[currentQuestionIndex];
+  const isFirstQuestion = currentQuestionIndex === 0;
+  const isLastQuestion = currentQuestionIndex === survey.questions.length - 1;
 
   return (
     <>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Switch, Route, Link } from 'wouter';
+import { Switch, Route } from 'wouter';
 import Survey from './Survey';
-import WelcomePage from './WelcomePage';
-import ErrorBoundary from './ErrorBoundary';
 import ErrorPage from './ErrorPage';
+import ErrorBoundary from './ErrorBoundary';
 
 function App() {
   return (
     <ErrorBoundary fallback={ErrorPage}>
       <Switch>
-        <Route path='/:slug' component={WelcomePage} />
-        <Route path='/:slug/:questionIndex?' component={Survey} />
+        <Route path='/:slug/:questionIndex' component={Survey} />
+        <Route path='/:slug' component={Survey} />
       </Switch>
     </ErrorBoundary>
   );

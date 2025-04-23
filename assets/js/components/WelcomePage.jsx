@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useLocation } from 'wouter';
 
-const WelcomePage = ({ params }) => {
-  const [survey, setSurvey] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSurvey = async () => {
-      try {
-        const response = await fetch(`/api/surveys/${params.slug}`);
-        const data = await response.json();
-        setSurvey(data.survey);
-      } catch (error) {
-        console.error('Error fetching survey:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSurvey();
-  }, [params.slug]);
+const WelcomePage = ({ survey, slug, responseId }) => {
+  const [_location, setLocation] = useLocation();
 
   const handleStartSurvey = () => {
-    window.location.href = `/${params.slug}/1`;
+    const queryString = responseId ? `?r=${responseId}` : '';
+    setLocation(`/${slug}/1${queryString}`);
   };
-
-  if (loading) return <div>Loading...</div>;
 
   return (
     <>
