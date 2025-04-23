@@ -45,6 +45,10 @@ defmodule SurveyTwoWeb.Router do
 
       resources "/responses", ResponseController, only: [:index, :show, :delete]
     end
+
+    resources "/responses", ResponseController, only: [] do
+      post "/add_answer", ResponseController, :add_answer, as: :add_answer
+    end
   end
 
   scope "/", SurveyTwoWeb do

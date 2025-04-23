@@ -17,7 +17,7 @@ defmodule SurveyTwo.Surveys.Answer do
   def changeset(answer, attrs) do
     answer
     |> cast(attrs, [:value, :question_id, :question_title, :response_id])
-    |> validate_required([:value, :question_id, :question_title, :response_id])
+    |> validate_required([:value, :question_title, :response_id])
     |> unique_constraint([:question_id, :response_id])
     |> assoc_constraint(:question)
     |> assoc_constraint(:response)

@@ -1,6 +1,11 @@
 <Layouts.app flash={@flash}>
   <.header>
     Response for {@response.survey.title}
+    <:subtitle>
+      <.link navigate={~p"/#{@response.survey.slug}?r=#{@response}"} target="_blank">
+        Open response <.icon name="hero-external-link" />
+      </.link>
+    </:subtitle>
     <:actions>
       <.button navigate={~p"/surveys/#{@response.survey_id}/responses"}>
         <.icon name="hero-arrow-left" />
@@ -17,4 +22,16 @@
     <:col :let={answer} label="Question">{answer.question_title}</:col>
     <:col :let={answer} label="Answer">{answer.value}</:col>
   </.table>
+
+  <.header class="new-answer-header">
+    Add New Answer
+  </.header>
+
+  <.form :let={f} for={@answer_changeset} action={~p"/responses/#{@response.id}/add_answer"}>
+    <.input field={f[:question_title]} type="text" label="Question" />
+    <.input field={f[:value]} type="text" label="Answer" />
+    <div class="mt-4">
+      <.button>Save Answer</.button>
+    </div>
+  </.form>
 </Layouts.app>

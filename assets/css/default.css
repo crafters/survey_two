@@ -2743,4 +2743,13 @@
       margin-bottom: 2rem;
     }
   }
+
+  header.new-answer-header {
+    :where(& > :not(:last-child)) {
+      margin-top: 4rem;
+      padding-top: 1rem;
+      border-top: 1px solid;
+      border-color: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+    }
+  }
 }
