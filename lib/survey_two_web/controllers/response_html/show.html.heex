@@ -29,7 +29,7 @@
 
   <.form :let={f} for={@answer_changeset} action={~p"/responses/#{@response.id}/add_answer"}>
     <.input field={f[:question_title]} type="text" label="Question" />
-    <.input field={f[:value]} type="text" label="Answer" />
+    <.input field={f[:value]} type="textarea" label="Answer" />
     <div class="mt-4">
       <.button>Save Answer</.button>
     </div>

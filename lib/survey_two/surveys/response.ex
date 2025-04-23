@@ -8,7 +8,7 @@ defmodule SurveyTwo.Surveys.Response do
     field :respondent_id, :string
 
     belongs_to :survey, SurveyTwo.Surveys.Survey
-    has_many :answers, SurveyTwo.Surveys.Answer
+    has_many :answers, SurveyTwo.Surveys.Answer, preload_order: [asc: :inserted_at]
 
     timestamps(type: :utc_datetime)
   end
