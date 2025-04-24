@@ -22,7 +22,7 @@
     <div id="options-wrapper" class="option-list space-y-2">
       <%= 
         options = if @changeset.data.options != [] && @changeset.data.options != nil do @changeset.data.options else [] end
-        for {option, idx} <- Enum.with_index(options) do 
+        for {option, _idx} <- Enum.with_index(options) do 
       %>
         <div class="flex items-center">
           <textarea name="question[options][]" placeholder={"click to edit the option"} rows="1">{String.trim(option)}</textarea>
