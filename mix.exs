@@ -35,6 +35,7 @@ defmodule SurveyTwo.MixProject do
     [
       {:phoenix, "~> 1.8.0-rc.0", override: true},
       {:phoenix_ecto, "~> 4.5"},
+      {:ecto_soft_delete, "~> 2.0"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},

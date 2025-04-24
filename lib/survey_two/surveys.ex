@@ -295,7 +295,7 @@ defmodule SurveyTwo.Surveys do
 
   """
   def delete_question(%Question{} = question) do
-    Repo.delete(question)
+    Repo.delete(question, allow_stale: true)
   end
 
   @doc """

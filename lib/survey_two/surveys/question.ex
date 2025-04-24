@@ -11,6 +11,7 @@ defmodule SurveyTwo.Surveys.Question do
     field :required, :boolean, default: false
     field :options, {:array, :string}
     field :position, :decimal
+    field :deleted_at, :utc_datetime
     belongs_to :survey, SurveyTwo.Surveys.Survey, type: :binary_id
 
     timestamps(type: :utc_datetime)
