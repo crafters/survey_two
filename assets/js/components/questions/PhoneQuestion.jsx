@@ -65,8 +65,8 @@ const PhoneQuestion = ({ question, currentAnswer, onAnswerChange }) => {
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className='required-indicator'>* Required</div>}
-      <input type='tel' className={`email-input ${!isValid ? 'invalid' : ''}`} value={answer} onChange={handleChange} onBlur={handleBlur} />
+      {question.required && <span>* Required</span>}
+      <input type='tel' className={`${!isValid ? 'invalid' : ''}`} value={answer} onChange={handleChange} onBlur={handleBlur} />
       {!isValid && <div className='validation-error'>Please enter a valid phone number</div>}
     </div>
   );

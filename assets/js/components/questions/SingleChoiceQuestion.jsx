@@ -21,12 +21,19 @@ const SingleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => {
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className="required-indicator">* Required</div>}
-      <div className="options-list">
+      {question.required && <span>* Required</span>}
+      <div className='options-list'>
         {question.options &&
           question.options.map((option, index) => (
-            <div key={index} className="option-item">
-              <input type="checkbox" id={`option-${question.id}-${index}`} name={`question-${question.id}`} value={option} checked={selectedOption === option} onChange={() => handleChange(option)} />
+            <div key={index}>
+              <input
+                type='checkbox'
+                id={`option-${question.id}-${index}`}
+                name={`question-${question.id}`}
+                value={option}
+                checked={selectedOption === option}
+                onChange={() => handleChange(option)}
+              />
               <label htmlFor={`option-${question.id}-${index}`}>{option}</label>
             </div>
           ))}

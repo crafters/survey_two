@@ -11,21 +11,23 @@ const WelcomePage = ({ survey, slug, responseId }) => {
 
   return (
     <>
-      <section className='welcome-section'>
-        <header className='welcome-header'>
+      <section className='content-section'>
+        <header>
           <div className='circle' />
           <div className='border-circle-medium' />
           <div className='border-circle-large' />
-          <h1 className='survey-header-title survey-header-title-welcome'>Omella</h1>
-          <p className='survey-header-subtitle survey-header-subtitle-welcome'>User Experience Survey</p>
+          <div className='survey-logo-container'>
+            <img src='/images/LogoWhite.svg' alt='' />
+          </div>
+          <p>User Experience Survey</p>
         </header>
-        <div className='welcome-container'>
-          <div className='welcome-content'>
+        <div>
+          <div className='content-box'>
             <h2>{survey?.title || 'Survey'}</h2>
             <p>{survey?.description || 'Survey description'}</p>
           </div>
-          <div className='navigation-controls navigation-controls-welcome'>
-            <button onClick={handleStartSurvey} className='nav-button next-button'>
+          <div className='navigation-controls navigation-controls-mobile'>
+            <button onClick={handleStartSurvey} className='next-button'>
               Start Survey
             </button>
           </div>

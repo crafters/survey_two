@@ -61,8 +61,8 @@ const EmailQuestion = ({ question, currentAnswer, onAnswerChange }) => {
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className='required-indicator'>* Required</div>}
-      <input type='email' className={`email-input ${!isValid ? 'invalid' : ''}`} value={answer} onChange={handleChange} onBlur={handleBlur} />
+      {question.required && <span>* Required</span>}
+      <input type='email' className={`${!isValid ? 'invalid' : ''}`} value={answer} onChange={handleChange} onBlur={handleBlur} />
       {!isValid && <div className='validation-error'>Please enter a valid email address</div>}
     </div>
   );

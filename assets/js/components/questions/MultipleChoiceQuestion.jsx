@@ -28,15 +28,15 @@ const MultipleChoiceQuestion = ({ question, currentAnswer, onAnswerChange }) => 
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className="required-indicator">* Required</div>}
-      <div className="options-list">
+      {question.required && <span>* Required</span>}
+      <div className='options-list'>
         {question.options &&
           question.options.map((option, index) => {
             const isChecked = selectedOptions.includes(option);
             return (
-              <div key={index} className="option-item">
+              <div key={index}>
                 <input
-                  type="checkbox"
+                  type='checkbox'
                   id={`option-${question.id}-${index}`}
                   name={`question-${question.id}`}
                   value={option}

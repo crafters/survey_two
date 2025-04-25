@@ -22,7 +22,7 @@ const TextQuestion = ({ question, currentAnswer, onAnswerChange }) => {
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className="required-indicator">* Required</div>}
+      {question.required && <span>* Required</span>}
       <textarea value={answer} onChange={handleChange} />
     </div>
   );

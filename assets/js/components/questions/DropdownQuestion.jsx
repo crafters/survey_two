@@ -22,7 +22,7 @@ const DropdownQuestion = ({ question, currentAnswer, onAnswerChange }) => {
       <h2>
         {question.position}. {question.title}
       </h2>
-      {question.required && <div className="required-indicator">* Required</div>}
+      {question.required && <span>* Required</span>}
       <select className="dropdown-select" value={selectedOption} onChange={handleChange}>
         <option value="">Select an option</option>
         {question.options &&
