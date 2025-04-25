@@ -295,7 +295,28 @@ defmodule SurveyTwo.Surveys do
 
   """
   def delete_question(%Question{} = question) do
-    Repo.delete(question, allow_stale: true)
+    result = Repo.delete(question, allow_stale: true)
+    reorder_questions_after_deletion(question.survey_id)
+    result
+  end
+
+  defp reorder_questions_after_deletion(survey_id) do
+    questions =
+      from(q in Question,
+        where: q.survey_id == ^survey_id and is_nil(q.deleted_at),
+        order_by: [asc: :position]
+      )
+      |> Repo.all()
+
+    Repo.transaction(fn ->
+      questions
+      |> Enum.with_index(1)
+      |> Enum.each(fn {question, idx} ->
+        question
+        |> Ecto.Changeset.change(position: Decimal.new(idx))
+        |> Repo.update!()
+      end)
+    end)
   end
 
   @doc """

@@ -17,11 +17,11 @@ defmodule SurveyTwo.Repo.Migrations.CreateQuestions do
     end
 
     create unique_index(:questions, [:survey_id, :title])
-    create unique_index(:questions, [:survey_id, :position])
+    create unique_index(:questions, [:survey_id, :position, :deleted_at])
 
     execute """
             CREATE OR REPLACE RULE soft_deletion AS ON DELETE TO questions
-            DO INSTEAD UPDATE questions SET deleted_at = NOW() WHERE id = OLD.id AND deleted_at IS NULL RETURNING OLD.*;
+            DO INSTEAD UPDATE questions SET deleted_at = NOW(), position = NULL WHERE id = OLD.id AND deleted_at IS NULL RETURNING OLD.*;
             """,
             """
             DROP RULE IF EXISTS soft_deletion ON questions;
