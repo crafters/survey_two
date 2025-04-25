@@ -26,15 +26,16 @@
       %>
         <div class="flex items-center">
           <textarea name="question[options][]" placeholder={"click to edit the option"} rows="1">{String.trim(option)}</textarea>
-          <button type="button" class={"ml-2 text-red-500 remove-option #{if length(options) == 1, do: "hidden", else: ""}"}>Remove</button>
+          <button type="button" class={"ml-2 text-red-500 remove-option  btn add-option btn-primary btn-soft#{if length(options) == 1, do: "hidden", else: ""}"}>Remove</button>
         </div>
       <% end %>
     </div>
-    <button type="button" id="add-option" class="add-option btn">+ Add Option</button>
+    <button type="button" id="add-option" class="btn add-option btn-primary btn-soft">+ Add Option</button>
+
   </div>
   
   
-  <footer>
+  <footer class="footer-form">
     <.button variant="primary">Save Question</.button>
     <.button :if={@return_to} href={@return_to}>Cancel</.button>
   </footer>
@@ -62,7 +63,7 @@
     }
     
     function addOptionInput() {
-      const optionCount = optionsWrapper.querySelectorAll('input').length + 1;
+      const optionCount = optionsWrapper.querySelectorAll('textarea[name="question[options][]"]').length + 1;
       const newOption = document.createElement('div');
       newOption.className = 'flex items-center';
       newOption.innerHTML = `
@@ -71,7 +72,7 @@
       `;
       optionsWrapper.appendChild(newOption);
       
-      if (optionsWrapper.querySelectorAll('input').length > 1) {
+      if (optionsWrapper.querySelectorAll('textarea[name="question[options][]"]').length > 1) {
         optionsWrapper.querySelectorAll('.remove-option').forEach(btn => {
           btn.classList.remove('hidden');
         });
@@ -82,7 +83,7 @@
       if (e.target.classList.contains('remove-option')) {
         e.target.parentElement.remove();
         
-        if (optionsWrapper.querySelectorAll('input').length <= 1) {
+        if (optionsWrapper.querySelectorAll('textarea[name="question[options][]"]').length <= 1) {
           optionsWrapper.querySelectorAll('.remove-option').forEach(btn => {
             btn.classList.add('hidden');
           });

@@ -16,13 +16,13 @@ defmodule SurveyTwoWeb.Layouts do
     <header class="navbar px-4 sm:px-6 lg:px-8">
       <div class="flex-1">
         <a href="/" class="flex-1 flex items-center gap-2">
-          <span class="text-sm font-semibold">Survey2</span>
+          <img src={~p"/images/Logotype_omela.svg"} alt="Logo" />
         </a>
       </div>
       <div class="flex-none">
         <ul class="flex flex-column px-1 space-x-4 items-center">
           <li>
-            <.link navigate={~p"/surveys"} class="btn btn-ghost">Surveys</.link>
+            <.link navigate={~p"/surveys"} class="btn btn-soft btn-primary">Surveys</.link>
           </li>
         </ul>
       </div>

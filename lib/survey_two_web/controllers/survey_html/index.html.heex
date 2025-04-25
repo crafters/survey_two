@@ -15,9 +15,9 @@
     <:col :let={survey} label="Active">{survey.active}</:col>
     <:col :let={survey} label="Slug">{survey.slug}</:col>
     <:action :let={survey}>
-      <.link navigate={~p"/surveys/#{survey}"}>Show</.link>
-      <.link navigate={~p"/surveys/#{survey}/edit"}>Edit</.link>
-      <.link href={~p"/surveys/#{survey}"} method="delete" data-confirm="Are you sure?">
+      <.link class="btn btn-primary btn-soft" navigate={~p"/surveys/#{survey}"}>Show</.link>
+      <.link class="btn btn-primary btn-soft" navigate={~p"/surveys/#{survey}/edit"}>Edit</.link>
+      <.link class="btn btn-primary btn-soft" href={~p"/surveys/#{survey}"} method="delete" data-confirm="Are you sure?">
         Delete
       </.link>
     </:action>

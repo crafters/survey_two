@@ -1,6 +1,6 @@
 <.form :let={f} for={@changeset} action={@action}>
   <.input field={f[:value]} type="textarea" label="Value" />
-  <footer>
+  <footer class="footer-form">
     <.button variant="primary">Save Answer</.button>
     <.button :if={@return_to} href={@return_to}>Cancel</.button>
   </footer>
